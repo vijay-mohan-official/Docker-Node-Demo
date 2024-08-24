@@ -8,8 +8,12 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const mongoUrlLocal = "mongodb://admin:password@localhost:27017";
-const mongoUrlDocker = "mongodb://admin:password@mongodb";
+const DB_USER = process.env.MONGO_DB_USERNAME;
+const DB_PASSWORD = process.env.MONGO_DB_PWD;
+
+let mongoUrlLocal = `mongodb://${DB_USER}:${DB_PASSWORD}@localhost:27017`;
+let mongoUrlDocker = `mongodb://${DB_USER}:${DB_PASSWORD}@mongodb`;
+
 const mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 const databaseName = "my-db";
 
